@@ -1,0 +1,23 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  host: postgres
+  username: postgres
+  password:
+  # For details on connection pooling, see Rails configuration guide
+  # https://guides.rubyonrails.org/configuring.html#database-pooling
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+
+development:
+  <<: *default
+  database: death_star_server_development
+
+test:
+  <<: *default
+  database: death_star_server_test
+
+production:
+  <<: *default
+  database: death_star_server_production
+  username: death_star_server
+  password: <%= ENV['DEATH_STAR_SERVER_DATABASE_PASSWORD'] %>
